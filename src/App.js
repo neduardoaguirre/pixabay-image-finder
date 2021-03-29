@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Form from './components/Form';
 import ImageListing from './components/ImageListing';
+import Spinner from './components/Spinner';
 
 function App() {
   const [search, setSearch] = useState('');
@@ -18,10 +19,10 @@ function App() {
       const URL = `https://pixabay.com/api/?key=${API_KEY}&q=${search}&per_page=${IMAGES_PER_PAGE}&page=${currentPage}`;
       const response = await fetch(URL);
       const data = await response.json();
-      console.log(images);
+      // console.log(images);
       if (data.hits.length === 0) {
         setEmpty(false);
-        console.log(empty);
+        // console.log(empty);
       }
       setTimeout(() => {
         scroll();
@@ -39,15 +40,19 @@ function App() {
     top.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const element = loading ? (
+    <Spinner />
+  ) : (
+    <ImageListing images={images} empty={empty} />
+  );
+
   return (
     <div className="container">
       <div className="jumbotron">
         <p className="lead text-center text-uppercase">Search for images</p>
         <Form setSearch={setSearch} setCurrentPage={setCurrentPage} />
       </div>
-      <div className="row justify-content-center">
-        <ImageListing images={images} empty={empty} />
-      </div>
+      <div className="row justify-content-center">{element}</div>
       <div className="row justify-content-center mb-3"></div>
     </div>
   );

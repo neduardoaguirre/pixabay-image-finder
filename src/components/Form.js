@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Error from './Error';
 
 const Form = ({ setSearch, setCurrentPage }) => {
   const [topic, setTopic] = useState('');
@@ -36,6 +37,7 @@ const Form = ({ setSearch, setCurrentPage }) => {
           />
         </div>
       </div>
+      {error ? <Error message="Please, add search topic" /> : null}
     </form>
   );
 };
