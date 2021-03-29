@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Form from './components/Form';
+import ImageListing from './components/ImageListing';
 
 function App() {
   const [search, setSearch] = useState('');
@@ -44,7 +45,9 @@ function App() {
         <p className="lead text-center text-uppercase">Search for images</p>
         <Form setSearch={setSearch} setCurrentPage={setCurrentPage} />
       </div>
-      <div className="row justify-content-center"></div>
+      <div className="row justify-content-center">
+        <ImageListing images={images} empty={empty} />
+      </div>
       <div className="row justify-content-center mb-3"></div>
     </div>
   );
