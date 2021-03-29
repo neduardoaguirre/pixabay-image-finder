@@ -19,10 +19,8 @@ function App() {
       const URL = `https://pixabay.com/api/?key=${API_KEY}&q=${search}&per_page=${IMAGES_PER_PAGE}&page=${currentPage}`;
       const response = await fetch(URL);
       const data = await response.json();
-      // console.log(images);
       if (data.hits.length === 0) {
         setEmpty(false);
-        // console.log(empty);
       }
       setTimeout(() => {
         scroll();
@@ -34,6 +32,18 @@ function App() {
     };
     callAPI();
   }, [search, currentPage]);
+
+  const backPage = () => {
+    const newCurrentPage = currentPage - 1;
+    if (newCurrentPage === 0) return;
+    setCurrentPage(newCurrentPage);
+  };
+
+  const nextPage = () => {
+    const newCurrentPage = currentPage + 1;
+    if (newCurrentPage > totalPages) return;
+    setCurrentPage(newCurrentPage);
+  };
 
   const scroll = () => {
     const top = document.querySelector('.jumbotron');
@@ -53,7 +63,22 @@ function App() {
         <Form setSearch={setSearch} setCurrentPage={setCurrentPage} />
       </div>
       <div className="row justify-content-center">{element}</div>
-      <div className="row justify-content-center mb-3"></div>
+      <div className="row justify-content-center mb-3">
+        {currentPage === 1 || loading ? null : (
+          <button
+            type="button"
+            className="btn btn-info mr-1"
+            onClick={backPage}
+          >
+            Back &laquo;
+          </button>
+        )}
+        {currentPage === totalPages || totalPages === 0 || loading ? null : (
+          <button type="button" className="btn btn-info" onClick={nextPage}>
+            Next &raquo;
+          </button>
+        )}
+      </div>
     </div>
   );
 }
