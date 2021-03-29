@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Form from './components/Form';
 import ImageListing from './components/ImageListing';
 import Spinner from './components/Spinner';
@@ -15,10 +16,9 @@ function App() {
     const callAPI = async () => {
       setLoading(true);
       const IMAGES_PER_PAGE = 36;
-      const API_KEY = '18830736-e1b07399b7ae644ffcb8341db';
-      const URL = `https://pixabay.com/api/?key=${API_KEY}&q=${search}&per_page=${IMAGES_PER_PAGE}&page=${currentPage}`;
-      const response = await fetch(URL);
-      const data = await response.json();
+      const URL = `https://pixabay.com/api/?key=${process.env.REACT_APP_API_KEY}&q=${search}&per_page=${IMAGES_PER_PAGE}&page=${currentPage}`;
+      const response = await axios.get(URL);
+      const data = response.data;
       if (data.hits.length === 0) {
         setEmpty(false);
       }

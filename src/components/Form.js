@@ -13,7 +13,6 @@ const Form = ({ setSearch, setCurrentPage }) => {
     }
     setError(false);
     setSearch(topic);
-    // setCurrentPage(1);
   };
 
   return (
