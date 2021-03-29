@@ -16,7 +16,7 @@ function App() {
     const callAPI = async () => {
       setLoading(true);
       const IMAGES_PER_PAGE = 36;
-      const URL = `https://pixabay.com/api/?key=${process.env.REACT_APP_API_KEY}&q=${search}&per_page=${IMAGES_PER_PAGE}&page=${currentPage}`;
+      const URL = `/.netlify/functions/getImages?search=${search}&per_page=${IMAGES_PER_PAGE}&page=${currentPage}`;
       const response = await axios.get(URL);
       const data = response.data;
       if (data.hits.length === 0) {
