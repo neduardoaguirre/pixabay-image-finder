@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from './Image';
 import Error from './Error';
+import PropTypes from 'prop-types';
 
 const ImageListing = ({ images, empty }) => {
   const element =
@@ -11,6 +12,11 @@ const ImageListing = ({ images, empty }) => {
     );
 
   return <div className="col-12 row">{element}</div>;
+};
+
+ImageListing.propTypes = {
+  images: PropTypes.array.isRequired,
+  empty: PropTypes.bool.isRequired,
 };
 
 export default ImageListing;

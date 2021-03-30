@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import Error from './Error';
+import PropTypes from 'prop-types';
 
-const Form = ({ setSearch, setCurrentPage }) => {
+const Form = ({ setSearch }) => {
   const [topic, setTopic] = useState('');
   const [error, setError] = useState(false);
 
@@ -39,6 +40,10 @@ const Form = ({ setSearch, setCurrentPage }) => {
       {error ? <Error message="Please, add search topic" /> : null}
     </form>
   );
+};
+
+Form.propTypes = {
+  setSearch: PropTypes.func.isRequired,
 };
 
 export default Form;

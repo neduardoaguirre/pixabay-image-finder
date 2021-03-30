@@ -60,7 +60,7 @@ function App() {
     <div className="container">
       <div className="jumbotron">
         <p className="lead text-center text-uppercase">Search for images</p>
-        <Form setSearch={setSearch} setCurrentPage={setCurrentPage} />
+        <Form setSearch={setSearch} />
       </div>
       <div className="row justify-content-center">{element}</div>
       <div className="row justify-content-center mb-3">
