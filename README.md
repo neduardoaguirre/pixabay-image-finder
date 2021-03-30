@@ -6,7 +6,7 @@ Web application built using React to get images through Pixabay API. This app is
 
 [Link](https://reactimagesfinder.netlify.app/)
 
-### Technologies Used
+## Technologies Used
 
 This app was bootstrapped using the create-react-app and uses the following technologies.
 
@@ -14,6 +14,7 @@ This app was bootstrapped using the create-react-app and uses the following tech
 - JSX
 - Bootstrap
 - Axios
+- Serverless function
 
 ## How to install
 
